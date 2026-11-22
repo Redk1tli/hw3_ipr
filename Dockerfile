@@ -1,7 +1,7 @@
 FROM python:3.13-slim
 WORKDIR /app
 COPY ./app/requirements.txt /app/
-RUN pip install requirements.txt
+RUN pip install -r requirements.txt
 COPY ./app .
 EXPOSE 8000
-CMD ["python" "app.py"]
+CMD ["python", "app.py"]
