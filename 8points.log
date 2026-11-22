@@ -1,0 +1,20 @@
+docker compose up -d
+curl -fsS -X POST http://127.0.0.1:8080/increment
+{"greeting": "Hello env!", "count": 1, "hostname": "d13ec954da03", "storage": "redis"}
+curl -fsS -X POST http://127.0.0.1:8080/increment
+{"greeting": "Hello env!", "count": 2, "hostname": "d13ec954da03", "storage": "redis"}
+curl -fsS -X POST http://127.0.0.1:8080/increment
+docker compose down
+docker compose up -d
+curl -fsS http://127.0.0.1:8080
+{"greeting": "Hello env!", "count": 2, "hostname": "e34f2c4dc673", "storage": "redis"}
+docker compose stop redis
+curl -fsS http://127.0.0.1:8080/healthz 
+{"status": "alive"}
+curl -fsS http://127.0.0.1:8080/readyz
+curl: (22) The requested URL returned error: 503
+curl -fsS -X POST http://127.0.0.1:8080/increment
+curl: (22) The requested URL returned error: 503
+docker compose start redis
+curl -fsS -X POST http://127.0.0.1:8080/increment 
+{"greeting": "Hello env!", "count": 3, "hostname": "e34f2c4dc673", "storage": "redis"}
