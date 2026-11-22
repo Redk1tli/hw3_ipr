@@ -1,0 +1,9 @@
+docker compose up -d
+curl -fsS -X POST http://127.0.0.1:8080/increment
+{"greeting": "Hello env!", "count": 1, "hostname": "e5b83adf2ffe", "storage": "sqlite"}
+curl -fsS -X POST http://127.0.0.1:8080/increment
+{"greeting": "Hello env!", "count": 2, "hostname": "e5b83adf2ffe", "storage": "sqlite"}
+docker compose down
+docker compose up -d
+curl -fsS http://127.0.0.1:8080
+{"greeting": "Hello env!", "count": 2, "hostname": "ab577846f546", "storage": "sqlite"}

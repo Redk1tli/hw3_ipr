@@ -1,0 +1,15 @@
+name: app-with-volumes
+services:
+  app:
+    build: .
+    ports:
+      - ${HOST_PORT}:8000
+    environment:
+      - PORT=8000
+      - GREETING=${GREETING}
+      - STORAGE=sqlite
+      - DATA_FILE=/data/counter.db
+    volumes:
+      - data:/data
+volumes:
+  data:
